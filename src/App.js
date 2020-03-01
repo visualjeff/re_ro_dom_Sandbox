@@ -39,16 +39,44 @@ const App = function App() {
   );
 };
 
+function GoHome() {
+  return (
+    <button className="button" type="button" onClick={handleClick}>
+      Go home
+    </button>
+  );
+}
+
 const Child = function Child() {
   let { id } = useParams();
 
   let history = useHistory();
 
+  function handleClick() {
+    history.push("/home");
+  }
+
   useEffect(() => {
     console.log("rendered");
   });
 
-  return <>{id}</>;
+  let button;
+  if (id !== "home") {
+    button = (
+      <button className="button" type="button" onClick={handleClick}>
+        Go home
+      </button>
+    );
+  } else {
+    button = null;
+  }
+
+  return (
+    <>
+      {id}
+      {button}
+    </>
+  );
 };
 
 exports.App = App;
