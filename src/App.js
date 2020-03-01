@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import "./styles.css";
+import "semantic-ui-css/semantic.min.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   useParams,
-  useHistory,
-  useLocation
+  useHistory
 } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 const App = function App() {
   return (
@@ -39,14 +39,6 @@ const App = function App() {
   );
 };
 
-function GoHome() {
-  return (
-    <button className="button" type="button" onClick={handleClick}>
-      Go home
-    </button>
-  );
-}
-
 const Child = function Child() {
   let { id } = useParams();
 
@@ -57,16 +49,12 @@ const Child = function Child() {
   }
 
   useEffect(() => {
-    console.log("rendered");
+    console.log("useEffect Fired");
   });
 
   let button;
   if (id !== "home") {
-    button = (
-      <button className="button" type="button" onClick={handleClick}>
-        Go home
-      </button>
-    );
+    button = <Button onClick={handleClick}>Go home</Button>;
   } else {
     button = null;
   }
